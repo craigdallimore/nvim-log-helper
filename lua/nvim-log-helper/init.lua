@@ -30,7 +30,7 @@ M.run = function ()
     local children = ts_utils.get_named_children(found)
     for k, v in pairs(children) do
       if v:type() == "property_identifier" then
-        local val = vim.fn.expand('%:t') .. "#" ..vim.treesitter.query.get_node_text(v, bufnr)
+        local val = vim.treesitter.query.get_node_text(v, bufnr);
 
         local pos = vim.api.nvim_win_get_cursor(0)[2]
         local line = vim.api.nvim_get_current_line()
@@ -43,11 +43,6 @@ M.run = function ()
   end
 end
 
-
--- look up the tree for a function definition or a method declaration
--- if the root node is found, print "Not in a function or a method
--- if one of these is found, print the method name and the file name
-
-vim.keymap.set('n', '<leader>fl', ':lua require"treesitter-log-helper".run()<cr>')
+-- vim.keymap.set('n', '<leader>fl', ':lua require"treesitter-log-helper".run()<cr>')
 
 return M
